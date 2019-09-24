@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 
 /**
  * Set `__static` path to static files in production
@@ -18,15 +18,43 @@ function createWindow () {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
-    useContentSize: true,
-    width: 1000
+    height: 600,
+    width: 1000,
+    title: '网易云音乐',
+    autoHideMenuBar: false,
+    show: false,
+    frame: true,
+    useContentSize: true
   })
 
   mainWindow.loadURL(winURL)
 
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  ipcMain.on('player:window:close', function(e) {
+    try {
+      e.sender.getOwnerBrowserWindow().close()
+    } catch (err) {
+      console.log(`[WARN] mainWindow couldn't be closed, ${err}`)
+    }
+  })
+
+  ipcMain.on('player:window:maximize', function (e) {
+    if (mainWindow.isMaximized()) {
+      mainWindow.unMaximized()
+    } else {
+      mainWindow.maximize()
+    }
+  })
+
+  ipcMain.on('player:window:minimize', function (e) {
+    mainWindow.minimize()
   })
 }
 

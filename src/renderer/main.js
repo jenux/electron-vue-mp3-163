@@ -3,6 +3,10 @@ import VueConfig from 'vue-config'
 import configs from './config'
 Vue.use(VueConfig, configs)
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
+
 import App from './App'
 import axios from 'axios'
 import router from './router'

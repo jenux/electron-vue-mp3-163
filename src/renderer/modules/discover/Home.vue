@@ -1,14 +1,16 @@
 <template>
-  <div class="discover">
-    <nav>
-      <router-link class="actived" to="/discover/recommend">推荐</router-link>
-      <router-link to="/discover/toplist">排行榜</router-link>
+  <div>
+    <nav class="top-nav">
+      <router-link class="actived" to="/discover/recommend">个性推荐</router-link>
       <router-link to="/discover/playlist">歌单</router-link>
       <router-link to="/discover/radio">主播电台</router-link>
+      <router-link to="/discover/toplist">排行榜</router-link>
       <router-link to="/discover/artist">歌手</router-link>
-      <router-link to="/discover/album">新碟上架</router-link>
+      <router-link to="/discover/album">最新音乐</router-link>
     </nav>
-    <router-view></router-view>
+    <div class="discover">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
