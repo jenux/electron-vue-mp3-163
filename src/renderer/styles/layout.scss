@@ -1,0 +1,41 @@
+.app__top {
+    height: 70px;
+    background-color: #242424;
+    border-bottom: 1px solid #000;
+    display: flex;
+    align-items: center;
+    color: white;
+    a {
+        color: #ccc
+    }
+
+    h1 a, 
+    a:hover,
+    a.actived {
+        color: white
+    }
+
+
+    h1 {
+        margin-left: 20px;
+        padding-left: 40px;
+        background: url('/static/images/logo.png') no-repeat 0 -5px
+    }
+
+    nav {
+        height: 100%;
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        a {
+            display: inline-flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            &.actived,
+            &:hover {
+                background: #000;
+            }
+        }
+    }
+}

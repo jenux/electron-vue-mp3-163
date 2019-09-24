@@ -1,9 +1,14 @@
 import Vue from 'vue'
-import axios from 'axios'
+import VueConfig from 'vue-config'
+import configs from './config'
+Vue.use(VueConfig, configs)
 
 import App from './App'
+import axios from 'axios'
 import router from './router'
 import store from './store'
+
+import './styles/index.scss'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
@@ -16,3 +21,17 @@ new Vue({
   store,
   template: '<App/>'
 }).$mount('#app')
+
+// Fake welcome screen
+const welcome = document.getElementById('welcome')
+const welcomeImg = welcome.querySelector('img');
+
+setTimeout(() => {
+  welcomeImg.classList.add('fade')
+}, 1000)
+welcomeImg.addEventListener('webkitAnimationEnd', () => {
+  Vue.nextTick(() => {
+    document.body.removeChild(welcome)
+  })
+})
+
