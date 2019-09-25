@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss">
 .discover {
-  nav {
+  nav.top-nav {
     height: 35px;
     background-color: #C20C0C;
     border-bottom: 1px solid #a40011;
@@ -63,6 +63,53 @@ export default {
           left: 50%;
           transform: translateX(-5px)
         }
+      }
+    }
+  }
+
+  .el-carousel__item {
+    background: #eee;
+    &.is-active {
+      background: #ccc;
+    }
+  }
+  dl {
+    margin: 20px 0;
+  }
+  dt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .toolbar {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      & > * {
+        margin-left: 20px;
+      }
+    }
+  }
+  
+  .inline__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    & > * {
+      width: calc((100% - 96px) / 4);
+      height: calc((100% - 96px) / 4);
+      margin: 8px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+      &:nth-child(2n+1) {
+        margin-left: 0
+      }
+      &:nth-child(4n) {
+        margin-right: 0;
       }
     }
   }

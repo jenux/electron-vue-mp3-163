@@ -11,7 +11,7 @@ export const routes = [{
     {
       path: 'recommend',
       name: 'recommend',
-      component: () => import(/* webpackChunkName: 'recommend' */ '@/components/recommend/index.vue'),
+      component: () => import(/* webpackChunkName: 'recommend' */ '@/views/recommend/index.vue'),
       meta: {
         title: '推荐'
       }
@@ -19,7 +19,7 @@ export const routes = [{
     {
       path: 'toplist',
       name: 'toplist',
-      component: () => import(/* webpackChunkName: 'toplist' */ '@/components/toplist/index.vue'),
+      component: () => import(/* webpackChunkName: 'toplist' */ '@/views/toplist/index.vue'),
       meta: {
         title: '排行榜'
       }
@@ -27,7 +27,7 @@ export const routes = [{
     {
       path: 'playlist',
       name: 'playlist',
-      component: () => import(/* webpackChunkName: 'playlist' */ '@/components/playlist/index.vue'),
+      component: () => import(/* webpackChunkName: 'playlist' */ '@/views/playlist/index.vue'),
       meta: {
         title: '歌单'
       }
@@ -35,7 +35,7 @@ export const routes = [{
     {
       path: 'radio',
       name: 'radio',
-      component: () => import(/* webpackChunkName: 'radio' */ '@/components/radio/index.vue'),
+      component: () => import(/* webpackChunkName: 'radio' */ '@/views/radio/index.vue'),
       meta: {
         title: '主播电台'
       }
@@ -43,7 +43,7 @@ export const routes = [{
     {
       path: 'artist',
       name: 'artist',
-      component: () => import(/* webpackChunkName: 'artist' */ '@/components/artist/index.vue'),
+      component: () => import(/* webpackChunkName: 'artist' */ '@/views/artist/index.vue'),
       meta: {
         title: '歌手'
       }
@@ -51,7 +51,7 @@ export const routes = [{
     {
       path: 'album',
       name: 'album',
-      component: () => import(/* webpackChunkName: 'album' */ '@/components/album/index.vue'),
+      component: () => import(/* webpackChunkName: 'album' */ '@/views/album/index.vue'),
       meta: {
         title: '新碟上架'
       }
