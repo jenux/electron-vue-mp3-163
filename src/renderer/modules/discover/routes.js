@@ -2,26 +2,18 @@ export const routes = [{
   path: 'discover',
   component: () => import(/* webpackChunkName: 'discover' */ './Home'),
   name: 'discover',
-  redirect: '/discover/rank',
+  redirect: '/discover/index',
   meta: {
     title: '发现音乐',
-    icon: 'music'
+    icon: 'el-icon-service'
   },
   children: [
     {
-      path: 'recommend',
-      name: 'recommend',
+      path: 'index',
+      name: 'home',
       component: () => import(/* webpackChunkName: 'recommend' */ '@/views/recommend/index.vue'),
       meta: {
-        title: '推荐'
-      }
-    },
-    {
-      path: 'toplist',
-      name: 'toplist',
-      component: () => import(/* webpackChunkName: 'toplist' */ '@/views/toplist/index.vue'),
-      meta: {
-        title: '排行榜'
+        title: '个性推荐'
       }
     },
     {
@@ -33,11 +25,19 @@ export const routes = [{
       }
     },
     {
-      path: 'radio',
-      name: 'radio',
-      component: () => import(/* webpackChunkName: 'radio' */ '@/views/radio/index.vue'),
+      path: 'djradio',
+      name: 'djradio',
+      component: () => import(/* webpackChunkName: 'radio' */ '@/views/djradio/index.vue'),
       meta: {
         title: '主播电台'
+      }
+    },
+    {
+      path: 'toplist',
+      name: 'toplist',
+      component: () => import(/* webpackChunkName: 'toplist' */ '@/views/toplist/index.vue'),
+      meta: {
+        title: '排行榜'
       }
     },
     {
@@ -53,7 +53,7 @@ export const routes = [{
       name: 'album',
       component: () => import(/* webpackChunkName: 'album' */ '@/views/album/index.vue'),
       meta: {
-        title: '新碟上架'
+        title: '最新音乐'
       }
     }
   ]

@@ -8,7 +8,7 @@
   export default {
     name: 'app',
     created () {
-      this.handleNetworkChange('请检查您的网络', false)
+      
     },
     mounted () {
       this.handleNetworkChange('网络连接成功')
@@ -40,7 +40,6 @@
           body: message,
           icon: 'static/images/icon.ico'
         })
-        console.info('**** status changed: ', status)
       }
     }
   }

@@ -14,7 +14,7 @@ export default new Router({
       path: '/',
       name: 'index',
       component: BasicLayout,
-      redirect: '/discover/recommend',
+      redirect: '/discover',
       children: [
         ...discoverRoutes,
         ...myRoutes

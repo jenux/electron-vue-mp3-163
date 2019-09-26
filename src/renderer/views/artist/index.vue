@@ -1,24 +1,24 @@
 <template>
   <div class="artist">
     <div class="artist__filter">
-      <el-container>
-        <el-aside width="100">语种: </el-aside>
-        <el-main>
+      <dl class="tags">
+        <dt>语种:</dt>
+        <dd>
           全部 | 华语 | 欧美 | 日本 | 韩国 | 其他
-        </el-main>
-      </el-container>
-      <el-container>
-        <el-aside width="100">分类: </el-aside>
-        <el-main>
+        </dd>
+      </dl>
+      <dl class="tags">
+        <dt>分类:</dt>
+        <dd>
           全部 | 男歌手 | 女歌手 | 乐队组合
-        </el-main>
-      </el-container>
-      <el-container>
-        <el-aside width="100">筛选: </el-aside>
-        <el-main>
+        </dd>
+      </dl>
+      <dl class="tags">
+        <dt>筛选:</dt>
+        <dd>
           热门 | A | B | C | D
-        </el-main>
-      </el-container>
+        </dd>
+      </dl>
     </div>
     <div class="inline__items">
       <div>
@@ -34,9 +34,7 @@
 </template>
 
 <style lang="scss">
-  .artist__filter {
-    .el-main {
-      padding: 0;
-    }
+  .artist {
+    
   }
 </style>

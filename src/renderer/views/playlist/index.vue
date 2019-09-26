@@ -34,6 +34,38 @@
   </div>
 </template>
 
+<script>
+import { getTopPlaylist } from '@/api/playlist'
+
+export default {
+  name: 'playlist',
+  data () {
+    return {
+      cat: '全部',
+      order: 'new',
+      listData: [],
+      page: 1,
+      limit: 10,
+      total: 0 
+    }
+  },
+  mounted () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData() {
+      let { cat, limit, order, page } = this
+      return getTopPlaylist({
+        cat,
+        limit,
+        order,
+        offset: limit * page
+      })
+    }
+  }
+}
+</script>
+
 <style lang="scss">
   .playlist {
     
