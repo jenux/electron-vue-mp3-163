@@ -44,7 +44,7 @@
       </dd>
 
       <dt>全球榜</dt>
-      <dd class="inline__items">
+      <dd class="card-list">
         <div v-for="o in 8" :key="o">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
           <div>新声榜</div>

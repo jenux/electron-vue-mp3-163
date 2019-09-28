@@ -1,21 +1,37 @@
-import request from './request'
-import axios from 'axios'
+import $http from './http'
 
-export function getTopPlaylist ({
+export function getTopList ({
   cat = '全部',
   limit = 10,
   offset = 0,
   order = 'new'
 }) {
-  axios.get('http://localhost:3000/top/playlist', {
+  return $http.get('/top/playlist', {
     params: {
       cat,
       limit,
       offset,
       order
     }
-  }).then(res => {
-    console.info('####', res)
-    return res
   })
+}
+
+export function getHighQuality({
+  cat = '全部',
+  limit = 1
+}) {
+  return $http.get('/top/playlist/highquality', {
+    params: {
+      cat,
+      limit
+    }
+  })
+}
+
+export function getCatList () {
+  return $http.get('/playlist/catlist')
+}
+
+export function getHotCats () {
+  return $http.get('/playlist/hot')
 }

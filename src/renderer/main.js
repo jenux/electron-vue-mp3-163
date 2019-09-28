@@ -1,21 +1,26 @@
 import Vue from 'vue'
 import VueConfig from 'vue-config'
-import configs from './config'
-Vue.use(VueConfig, configs)
+import AppConfig from './config'
+Vue.use(VueConfig, AppConfig)
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  preLoad: 1,
+  loading: '../static/images/default_album.jpg'
+})
+
 import App from './App'
-import axios from 'axios'
 import router from './router'
 import store from './store'
 
 import './styles/index.scss'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
-Vue.http = Vue.prototype.$http = axios
+// Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

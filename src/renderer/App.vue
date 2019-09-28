@@ -5,13 +5,15 @@
 </template>
 
 <script>
+  import { showNotification } from '@/utils'
+
   export default {
     name: 'app',
     created () {
       
     },
     mounted () {
-      this.handleNetworkChange('网络连接成功')
+      this.handleNetworkChange('欢迎回来')
       this.$electron.ipcRenderer.on('will-close', () => {
         this.handleWillClose()
         this.$electron.ipcRenderer.send('app-exit')
@@ -22,7 +24,7 @@
       }
 
       window.onoffline = () => {
-        this.handleWillClose('请检查您的网络', false)
+        this.handleNetworkChange('请检查您的网络', '', false)
       }
 
       window.ononline = () => {
@@ -33,12 +35,10 @@
       handleWillClose () {
         
       },
-      handleNetworkChange(message = '', status = true) {
-        let { title } = this.$config
-        let notification = new Notification(title, {
+      handleNetworkChange(title = '', message = '', status = true) {
+        showNotification({
           title,
-          body: message,
-          icon: 'static/images/icon.ico'
+          message
         })
       }
     }

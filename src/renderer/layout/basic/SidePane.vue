@@ -69,8 +69,8 @@ export default {
 </script>
 
 <style lang="scss">
-  $side_hl: #d33f37;
-  $side_hl_bg: #e2e2e2;
+  @import "@/styles/var.scss";
+
   .side-pane {
     h1 {
       padding: 10px;
@@ -89,19 +89,19 @@ export default {
         padding: 8px 12px;
         color: inherit;
         &:hover {
-          background: $side_hl_bg;
+          background: $font_reverse_secondary_color;
         }
       }
       &.is-actived a {
-        background: $side_hl_bg;
-        color: $side_hl;
+        background: $font_reverse_secondary_color;
+        color: $font_hl_color;
       }
     }
     dt {
       margin-top: 10px;
       padding: 0 12px;
-      font-size: 80%;
-      color: #999;
+      font-size: 90%;
+      color: $font_label_color;
     }
   }
 </style>

@@ -17,7 +17,7 @@
 
     <dl>
       <dt>电台个性推荐 ></dt>
-      <dd class="inline__items">
+      <dd class="card-list">
         <div v-for="o in 5" :key="o">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
           <div>经典老歌 | 那些年</div>
@@ -25,7 +25,7 @@
       </dd>
 
       <dt>创作|翻唱 ></dt>
-      <dd class="inline__items">
+      <dd class="card-list">
         <div v-for="o in 5" :key="o">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
           <div>经典老歌 | 那些年</div>
@@ -33,7 +33,7 @@
       </dd>
 
       <dt>3D|电子 ></dt>
-      <dd class="inline__items">
+      <dd class="card-list">
         <div v-for="o in 5" :key="o">
           <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
           <div>经典老歌 | 那些年</div>

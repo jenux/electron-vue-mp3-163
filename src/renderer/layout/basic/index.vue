@@ -2,21 +2,14 @@
   <div class="basic-layout">
     <el-container>
       <el-container>
-        <el-aside class="basic-layout__side" width="200">
+        <el-aside class="basic-layout__side">
           <side-pane></side-pane>
         </el-aside>
         
         <el-container class="basic-layout__main">
-          <el-header class="basic-layout__hd" style="height:50px">
-            <div class="toolbar">
-              <el-input 
-                size="mini"
-                prefix-icon="el-icon-search"
-                placeholder="搜索"></el-input>
-              <i class="el-icon-setting"></i>
-              <i class="el-icon-message"></i>
-              <i class="el-icon-copy-document"></i>
-            </div>
+          <el-header class="basic-layout__hd">
+            <!-- top-nav in main content will inject this area using position:absolute -->
+            <top-bar></top-bar>
           </el-header>
           <el-main class="basic-layout__bd">
             <router-view></router-view>
@@ -47,7 +40,7 @@
 </template>
 
 <script>
-import TopNav from './TopNav'
+import TopBar from './TopBar'
 import SidePane from './SidePane'
 
 export default {
@@ -58,7 +51,7 @@ export default {
     }
   },
   components: {
-    TopNav,
+    TopBar,
     SidePane
   },
   mounted () {
@@ -68,44 +61,32 @@ export default {
 </script>
 
 <style lang="scss">
-  $header_size: 50px;
-  $header_bg_color: #C20C0C;
-  $header_border_color: 1px solid #a40011;
+  @import '@/styles/var';
 
-  $side_width: 200px;
-  $side_bg: #ededed;
   .basic-layout {
     & > .el-container {
       height: 100vh;
+      color: $font_color;
     }
     .basic-layout__side {
-      width: $side_width;
-      background: $side_bg;
-      color: #333;
+      width: $side_width !important;
+      background: $side_bg_color;
       h1 {
         height: $header_size - 20;
         background-color: $header_bg_color;
       }
     }
     .basic-layout__main {
-      background-color: #fff;
+      background-color: $main_bg_color;
       position: relative;
     }
     .basic-layout__hd {
-      height: $header_size;
+      height: $header_size !important;
       background-color: $header_bg_color;
       display: flex;
       justify-content: flex-end;
       align-items: center;
       overflow: hidden;
-      .toolbar {
-        display: flex;
-        align-items: center;
-        [class^=el-icon-] {
-          color: #fff;
-          margin-left: 10px;
-        }
-      }
     }
     .basic-layout__bd {
       flex: 1
@@ -118,52 +99,13 @@ export default {
       height: $header_size;
       display: flex;
       align-items: center;
-      & > * {
+      & > a {
         padding: 0 10px;
-        color: #eee;
+        color: $font_reverse_secondary_color;
+        font-size: 120%;
         &.is-actived {
-          color: #fff;
+          color: $font_reverse_color;
           font-weight: bold
-        }
-      }
-    }
-    .player {
-      // width: 100%;
-      // height: 40px;
-      // padding: 12px;
-      // position: fixed;
-      left: 0;
-      bottom: 0;
-      border-top: 1px solid #ddd;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      h1 {
-        font-size: 18px;
-
-        small {
-          font-size: 12px;
-          font-weight: normal;
-          color: #999;
-          &::before {
-            content: ' - '
-          }
-        }
-      }
-      .player__info {
-        flex: 1;
-        margin: 0 10px;
-      }
-      .player__controls {
-        display: flex;
-        margin-right: 10px;
-        align-items: center;
-        i {
-          margin: 10px;
-          font-size: 2em;
-        }
-        .el-icon-video-play {
-          font-size: 3em;
         }
       }
     }

@@ -1,21 +1,22 @@
 @import './animation';
 
 * {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 13px;
 }
 
 ul, ol {
-    margin: 0;
-    list-style: none;
+  margin: 0;
+  list-style: none;
 }
 body {
-    height: 100vh;
-    background-color: transparent;
-    overflow: hidden;
-    user-select: none;
-    font-family: "Microsoft JhengHei", "\660E\9ED1", Arial, Helvetica;
+  height: 100vh;
+  background-color: transparent;
+  overflow: hidden;
+  user-select: none;
+  font-family: "Microsoft JhengHei", "\660E\9ED1", Arial, Helvetica;
 }
 a,
 a:focus {
@@ -39,4 +40,73 @@ img[lazy="loaded"] {
   animation: lazyedAni 0.3s;
 }
 
+.player {
+  // width: 100%;
+  // height: 40px;
+  // padding: 12px;
+  // position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid #ddd;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  h1 {
+    font-size: 18px;
+
+    small {
+      font-size: 12px;
+      font-weight: normal;
+      color: #999;
+      &::before {
+        content: ' - '
+      }
+    }
+  }
+  .player__info {
+    flex: 1;
+    margin: 0 10px;
+  }
+  .player__controls {
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+    i {
+      margin: 10px;
+      font-size: 2em;
+    }
+    .el-icon-video-play {
+      font-size: 3em;
+    }
+  }
+}
+
+dl {
+  margin: 20px 0;
+}
+
+dl.tags {
+  display: flex;
+  margin: 0;
+  dt {
+    margin-right: 10px;
+  }
+}
+
+.sub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  .sub-header__extra {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    & > * {
+      margin-left: 20px;
+    }
+  }
+}
+
+@import './cards';
 @import './response';

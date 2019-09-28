@@ -8,18 +8,52 @@
 
     <dl>
       <dt>个性推荐 ></dt>
-      <dd class="inline__items">
-        <div v-for="o in 8" :key="o">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-          <div>经典老歌 | 那些年</div>
+      <dd class="card-list">
+        <div class="card-list__item" v-for="o in 8" :key="o">
+          <div class="cover">
+            <img src="http://p2.music.126.net/v0guOXrzl3Wn24GLi-B-nw==/109951164389512106.jpg" class="image">
+          </div>
+          <div class="label">经典老歌 | 那些年</div>
         </div>
       </dd>
 
-      <dt>个性推荐 ></dt>
-      <dd class="inline__items">
-        <div v-for="o in 8" :key="o">
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-          <div>经典老歌 | 那些年</div>
+      <dt>独家放送 ></dt>
+      <dd class="card-list">
+        <div class="card-list__item" v-for="o in 8" :key="o">
+          <div class="cover">
+            <img src="http://p2.music.126.net/v0guOXrzl3Wn24GLi-B-nw==/109951164389512106.jpg" class="image">
+          </div>
+          <div class="label">经典老歌 | 那些年</div>
+        </div>
+      </dd>
+
+      <dt>最新音乐 ></dt>
+      <dd class="card-list">
+        <div class="card-list__item" v-for="o in 8" :key="o">
+          <div class="cover">
+            <img src="http://p2.music.126.net/v0guOXrzl3Wn24GLi-B-nw==/109951164389512106.jpg" class="image">
+          </div>
+          <div class="label">经典老歌 | 那些年</div>
+        </div>
+      </dd>
+
+      <dt>推荐MV ></dt>
+      <dd class="card-list">
+        <div class="card-list__item" v-for="o in 8" :key="o">
+          <div class="cover">
+            <img src="http://p2.music.126.net/v0guOXrzl3Wn24GLi-B-nw==/109951164389512106.jpg" class="image">
+          </div>
+          <div class="label">经典老歌 | 那些年</div>
+        </div>
+      </dd>
+
+      <dt>主播电台 ></dt>
+      <dd class="card-list">
+        <div class="card-list__item" v-for="o in 8" :key="o">
+          <div class="cover">
+            <img src="http://p2.music.126.net/v0guOXrzl3Wn24GLi-B-nw==/109951164389512106.jpg" class="image">
+          </div>
+          <div class="label">经典老歌 | 那些年</div>
         </div>
       </dd>
     </dl>
