@@ -37,16 +37,17 @@
         v-infinite-scroll="fetchList"
         infinite-scroll-disabled="disableInfiniteLoading"
       >
-        <div class="card-list__item artist__item">
-          <router-link :to="'toplist'">
-            <div class="cover">
-              <img src="/static/images/artist_rank.png" class="image" />
-            </div>
-            <div class="label">歌手排行榜</div>
-          </router-link>
+        <div 
+          class="card-list__item artist__item"
+          @click="navToTopList">
+          <div class="cover">
+            <img src="/static/images/artist_rank.png" class="image" />
+          </div>
+          <div class="label">歌手排行榜</div>
         </div>
         <div v-for="p in list.data" :key="p.id"
-          class="card-list__item artist-item"> 
+          class="card-list__item artist-item"
+          @click="navToDetail(p)"> 
           <div class="cover"
             v-lazy-container="{ selector: 'img'}">
             <img 
@@ -83,7 +84,7 @@ export default {
         order: '',
         data: [],
         page: 1,
-        limit: 12,
+        limit: 50,
         total: 0,
         hasMore: true
       }
@@ -167,6 +168,19 @@ export default {
 
         this.list.hasMore = more
         this.list.loading = false
+      })
+    },
+    navToTopList() {
+      this.$router.push({
+        name: 'artist/toplist'
+      })
+    },
+    navToDetail ({id}) {
+      this.$router.push({
+        name: 'artist/detail',
+        params: {
+          id
+        }
       })
     }
   }

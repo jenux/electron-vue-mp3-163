@@ -74,6 +74,20 @@ const actions = {
         }
       })
     })
+  },
+
+  // 歌手详情
+  getArtist (ctx, payload) {
+    return new Promise((resolve, reject) => {
+      api.getArtist(payload).then(res => {
+        if (res.code === 200) {
+          resolve(res)
+        } else {
+          reject(res)
+          Message.error('Error: ', res)
+        }
+      })
+    })
   }
 }
 

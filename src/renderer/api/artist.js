@@ -84,3 +84,12 @@ export function getCatList () {
     })
   })
 }
+
+// 歌手详情
+export function getArtist ({id}) {
+  return $http.get('/artists', {
+    params: {
+      id
+    }
+  })
+}

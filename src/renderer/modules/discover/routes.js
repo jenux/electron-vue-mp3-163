@@ -51,7 +51,7 @@ export const routes = [{
       children: [
         {
           path: 'home',
-          name: 'artist:home',
+          name: 'artist/home',
           component: () => import(/* webpackChunkName: 'artist-home' */ '@/views/artist/Home.vue'),
           meta: {
             title: '歌手'
@@ -59,10 +59,18 @@ export const routes = [{
         },
         {
           path: 'toplist',
-          name: 'artist:toplist',
+          name: 'artist/toplist',
           component: () => import(/* webpackChunkName: 'artist-toplist' */ '@/views/artist/TopList.vue'),
           meta: {
             title: '歌手榜'
+          }
+        },
+        {
+          path: ':id',
+          name: 'artist/detail',
+          component: () => import(/* webpackChunkName: 'artist-detail' */ '@/views/artist/Detail.vue'),
+          meta: {
+            title: '歌手'
           }
         }
       ]
