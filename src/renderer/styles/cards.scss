@@ -3,13 +3,14 @@
 .card-list {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin: 10px -8px 20px;
   .card-list__item {
-    width: calc((100% - 48px) / 4);
-    height: calc((100% - 48px) / 4);
+    // width: calc((100% - 48px) / 4);
+    // height: calc((100% - 48px) / 4);
+    width: 135px;
     margin: 0 8px 8px;
     .cover {
+      height: 135px;
       color: $font_reverse_hl_color;
       position: relative;
       img {
@@ -20,12 +21,12 @@
         border-radius: 3px;
       }
     }
-    &:nth-child(4n+1) {
-      margin-left: 0;
-    }
-    &:nth-child(4n) {
-      margin-right: 0;
-    }
+    // &:nth-child(4n+1) {
+    //   margin-left: 0;
+    // }
+    // &:nth-child(4n) {
+    //   margin-right: 0;
+    // }
   }
 }
 

@@ -66,7 +66,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       api.getTopList().then(res => {
         if (res.code === 200) {
-          commit('SET_HOTList', res.tags.map(x => x.playlistTag))
+          commit('SET_TOPLIST', res.list.artists)
           resolve(res)
         } else {
           reject(res)

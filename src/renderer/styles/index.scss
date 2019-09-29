@@ -22,6 +22,10 @@ body {
 a,
 a:focus {
   text-decoration: none;
+  color: $font_secondary_color
+}
+a:hover {
+  color: $font_color
 }
 ::-webkit-scrollbar {
   width: 6px;

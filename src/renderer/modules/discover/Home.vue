@@ -9,6 +9,7 @@
       >{{ menu.meta.title }}</router-link>
     </nav>
     <div class="discover">
+      <!-- {{ $route.fullPath }} -->
       <router-view></router-view>
     </div>
   </div>
@@ -30,8 +31,9 @@ export default {
   },
   computed: {
     menus () {
-      return Menus[0].children.map(({name, path, meta}) => {
-        return {name, path, meta}
+      let root = Menus[0];
+      return root.children.map(({name, path, meta}) => {
+        return {name, path: '/'+root.path+'/'+path, meta}
       })
     }
   },

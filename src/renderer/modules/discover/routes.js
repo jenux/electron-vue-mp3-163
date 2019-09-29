@@ -44,9 +44,28 @@ export const routes = [{
       path: 'artist',
       name: 'artist',
       component: () => import(/* webpackChunkName: 'artist' */ '@/views/artist/index.vue'),
+      redirect: '/discover/artist/home',
       meta: {
         title: '歌手'
-      }
+      },
+      children: [
+        {
+          path: 'home',
+          name: 'artist:home',
+          component: () => import(/* webpackChunkName: 'artist-home' */ '@/views/artist/Home.vue'),
+          meta: {
+            title: '歌手'
+          }
+        },
+        {
+          path: 'toplist',
+          name: 'artist:toplist',
+          component: () => import(/* webpackChunkName: 'artist-toplist' */ '@/views/artist/TopList.vue'),
+          meta: {
+            title: '歌手榜'
+          }
+        }
+      ]
     },
     {
       path: 'album',
