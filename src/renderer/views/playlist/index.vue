@@ -4,9 +4,10 @@
       height="170px"
       direction="vertical" 
       :autoplay="true"
-      v-loading="highQuality.loading">
-      <el-carousel-item v-for="item in highQuality.data" :key="item.id">
-        <div>
+      class="top-list"
+      v-loading="list.loading">
+      <el-carousel-item v-for="item in topList.data" :key="item.id">
+        <div class="top-list__item">
           <div class="cover">
             <img v-lazy="item.coverImgUrl" />
           </div>
@@ -19,7 +20,7 @@
       </el-carousel-item>
     </el-carousel>
 
-    <dl>
+    <dl class="list-data">
       <dt class="sub-header">
         <el-popover
           placement="bottom right"
@@ -29,8 +30,8 @@
         >
           <div class="catlist--dropdown">
             <a
-              :class="{'is-actived': topList.cat == '全部'}"
-              @click="fetchTopListByCate('')">{{catList.all.name}}</a>
+              :class="{'is-actived': list.cat == '全部'}"
+              @click="fetchListByCate('')">{{catList.all.name}}</a>
             <el-divider></el-divider>
             <dl class="tags"
               v-for="(arr, $index) in catList.data"
@@ -40,29 +41,30 @@
                 <a 
                   v-for="tag in arr" 
                   :key="tag.id"
-                  :class="{'is-actived': tag.name === topList.cat}"
-                  @click="fetchTopListByCate(tag.name)"
+                  :class="{'is-actived': tag.name === list.cat}"
+                  @click="fetchListByCate(tag.name)"
                 >{{ tag.name }}<sup v-if="tag.hot">hot</sup></a>
               </dd>
             </dl>
           </div>
           <el-button round slot="reference">
-            {{ topList.cat == '全部' ? catList.all.name : topList.cat }}
+            {{ list.cat == '全部' ? catList.all.name : list.cat }}
             <i class="el-icon-arrow-right el-icon--right" />
           </el-button>
         </el-popover>
-        <div class="sub-header__extra">
+
+        <div class="sub-header__extra hot-cat-list">
           <a 
-            class="hot-cate__item"
-            v-for="item in hotCats" 
-            :class="{'is-actived': item.name === topList.cat}"
+            class="hot-cat-list__item"
+            v-for="item in hotCatList" 
+            :class="{'is-actived': item.name === list.cat}"
             :key="item.id"
-            @click="fetchTopListByCate(item.name)"
+            @click="fetchListByCate(item.name)"
           >{{ item.name }}</a>
         </div>
       </dt>
 
-      <dd v-loading="topList.loading">
+      <dd v-loading="list.loading">
         <p style="text-align: right; display: none">
             <el-switch
             v-model="orderByHot"
@@ -72,11 +74,11 @@
         </p>
         <div 
           class="card-list"
-          v-infinite-scroll="fetchTopList"
+          v-infinite-scroll="fetchList"
           infinite-scroll-disabled="disableInfiniteLoading">
           <div 
             class="card-list__item playlist-card" 
-            v-for="item in topList.data" 
+            v-for="item in list.data" 
             :key="item.id">
             <div class="cover">
               <img 
@@ -91,7 +93,7 @@
                 {{ item.playCount }}
               </div>
             </div>
-            <div class="label">{{ item.name }} | 那些年</div>
+            <div class="label">{{ item.name }}</div>
           </div>
         </div>
       </dd>
@@ -102,8 +104,10 @@
 <script>
 import _ from 'lodash'
 import { createNamespacedHelpers } from 'vuex'
-
-const { mapActions, mapState } = createNamespacedHelpers('Playlist')
+const { 
+  mapActions, 
+  mapState 
+} = createNamespacedHelpers('Playlist')
 
 export default {
   name: 'playlist',
@@ -111,11 +115,11 @@ export default {
     return {
       isShowCatlist: false,
       orderByHot: true,
-      highQuality: {
+      topList: {
         loading: false,
         data: []
       },
-      topList: {
+      list: {
         loading: false,
         order: '',
         data: [],
@@ -129,29 +133,29 @@ export default {
   },
   mounted () {
     this.$store.dispatch('Playlist/getCatList')
-    this.$store.dispatch('Playlist/getHotCats')
+    this.$store.dispatch('Playlist/getHotCatList')
     this.fetchData();
   },
   computed: {
-    ...mapState(['catList', 'hotCats']),
+    ...mapState(['catList', 'hotCatList']),
     disableInfiniteLoading () {
-      return this.topList.loading || !this.topList.hasMore
+      return this.list.loading || !this.list.hasMore
     }
   },
   methods: {
     ...mapActions([
-      'getTopList',
-      'getHighQuality'
+      'getList',
+      'getTopList'
     ]),
-    fetchTopListByCate (cat) {
+    fetchListByCate (cat) {
       // close dropdown
       this.isShowCatlist = false
 
-      if (cat === this.topList.cat) {
+      if (cat === this.list.cat) {
         return
       }
       // reset hasMore flag
-      Object.assign(this.topList, {
+      Object.assign(this.list, {
         hasMore: true,
         data: [],
         page: 1,
@@ -161,23 +165,25 @@ export default {
       this.fetchData()
     },
     fetchData () {
-      this.fetchHighQuality()
       this.fetchTopList()
+      this.fetchList()
     },
-    fetchHighQuality () {
-      let { cat } = this.topList
-      this.highQuality.loading = true
-      this.getHighQuality({cat, limit:3})
+    fetchTopList () {
+      let { cat } = this.list
+      this.topList.loading = true
+      this.getTopList({cat, limit:3})
         .then(({playlists}) => {
-          this.highQuality.data = playlists
-          this.highQuality.loading = false
+          Object.assign(this.topList, {
+            data: playlists,
+            loading: false
+          })
         })
     },
-    fetchTopList() {
-      if (!this.topList.hasMore) {
+    fetchList() {
+      if (!this.list.hasMore) {
         return
       }
-      let { cat, limit, page } = this.topList
+      let { cat, limit, page } = this.list
       let order = this.orderByHot ? 'hot' : 'new'
       let params = {
         cat,
@@ -186,21 +192,19 @@ export default {
         offset: limit * (page-1)
       }
       
-      this.topList.loading = true
-      // console.info('* fetching: ', cat, page)
-      this.getTopList(params).then(({playlists, total, cat, more}) => {
-        this.topList.data = [...this.topList.data, ...playlists]
+      this.list.loading = true
+      this.getList(params).then(({playlists, total, cat, more}) => {
+        this.list.data = [...this.list.data, ...playlists]
 
         if (playlists.length) {
-          this.topList.page += 1
+          this.list.page += 1
         }
-        Object.assign(this.topList, {
+        Object.assign(this.list, {
           total,
           cat,
-          hasMore: more
+          hasMore: more,
+          loading: false
         })
-        this.topList.loading = false
-        // console.info('* done fetching: ', this.topList.cat, this.topList.page)
       })
     }
   }
@@ -232,9 +236,12 @@ export default {
     }
   }
   .playlist {
-    .el-carousel__item {
+    .top-list {
+      background: #eee;
       border-radius: 10px;
-
+    }
+    .el-carousel__item {
+      background: transparent !important;
       & > div {
         padding: 15px;
         display: flex;
@@ -258,7 +265,7 @@ export default {
         margin-bottom: 5px
       }
     }
-    .hot-cate__item {
+    .hot-cate-list__item {
       margin: 0;
       padding-left: 10px;
       cursor: pointer;

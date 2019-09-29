@@ -13,6 +13,9 @@ Vue.use(VueLazyload, {
   loading: '../static/images/default_album.jpg'
 })
 
+import filters from './filters'
+Vue.use(filters)
+
 import App from './App'
 import router from './router'
 import store from './store'

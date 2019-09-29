@@ -1,6 +1,7 @@
 import $http from './http'
 
-export function getTopList ({
+// 歌单列表
+export function getList ({
   cat = '全部',
   limit = 10,
   offset = 0,
@@ -16,7 +17,8 @@ export function getTopList ({
   })
 }
 
-export function getHighQuality({
+// 精品歌单
+export function getTopList({
   cat = '全部',
   limit = 1
 }) {
@@ -28,10 +30,12 @@ export function getHighQuality({
   })
 }
 
+// 歌单分类
 export function getCatList () {
   return $http.get('/playlist/catlist')
 }
 
-export function getHotCats () {
+// 歌单热门分类
+export function getHotCatList () {
   return $http.get('/playlist/hot')
 }
