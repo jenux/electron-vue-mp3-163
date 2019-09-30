@@ -85,11 +85,37 @@ export function getCatList () {
   })
 }
 
-// 歌手详情
+// 歌手主页，包括热门歌曲
 export function getArtist ({id}) {
   return $http.get('/artists', {
-    params: {
-      id
-    }
+    params: {id}
+  })
+}
+
+// 歌手描述
+export function getArtistDesc ({id}) {
+  return $http.get('/artist/desc', {
+    params: {id}
+  })
+}
+
+// 歌手专辑
+export function getArtistAlbum ({id}) {
+  return $http.get('/artist/album', {
+    params: {id}
+  })
+}
+
+// 歌手MV
+export function getArtistMV ({id}) {
+  return $http.get('/artist/mv', {
+    params: {id}
+  })
+}
+
+// 相似歌手
+export function getArtistSimi ({id}) {
+  return $http.get('/simi/artist', {
+    params: {id}
   })
 }

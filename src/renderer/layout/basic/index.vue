@@ -64,6 +64,7 @@ export default {
   @import '@/styles/var';
 
   .basic-layout {
+    min-width: 1024px;
     & > .el-container {
       height: 100vh;
       color: $font_color;

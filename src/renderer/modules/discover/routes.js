@@ -20,9 +20,20 @@ export const routes = [{
       path: 'playlist',
       name: 'playlist',
       component: () => import(/* webpackChunkName: 'playlist' */ '@/views/playlist/index.vue'),
+      redirect: '/discover/playlist/home',
       meta: {
         title: '歌单'
-      }
+      },
+      children: [
+        {
+          path: 'home',
+          name: 'playlist/home',
+          component: () => import(/* webpackChunkName: 'playlist-home' */ '@/views/playlist/Home.vue'),
+          meta: {
+            title: '歌单'
+          }
+        }
+      ]
     },
     {
       path: 'djradio',

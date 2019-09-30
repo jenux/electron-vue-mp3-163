@@ -21,6 +21,7 @@ const mutations = {
 }
 
 const actions = {
+  // 歌手列表
   getList(ctx, payload) {
     return new Promise((resolve, reject) => {
       api.getList(payload).then(res => {
@@ -76,10 +77,64 @@ const actions = {
     })
   },
 
-  // 歌手详情
+  // 歌手主页
   getArtist (ctx, payload) {
     return new Promise((resolve, reject) => {
       api.getArtist(payload).then(res => {
+        if (res.code === 200) {
+          resolve(res)
+        } else {
+          reject(res)
+          Message.error('Error: ', res)
+        }
+      })
+    })
+  },
+
+  // 歌手专辑
+  getArtistAlbum (ctx, payload) {
+    return new Promise((resolve, reject) => {
+      api.getArtistAlbum(payload).then(res => {
+        if (res.code === 200) {
+          resolve(res)
+        } else {
+          reject(res)
+          Message.error('Error: ', res)
+        }
+      })
+    })
+  },
+  // 歌手MV
+  getArtistMV (ctx, payload) {
+    return new Promise((resolve, reject) => {
+      api.getArtistMV(payload).then(res => {
+        if (res.code === 200) {
+          resolve(res)
+        } else {
+          reject(res)
+          Message.error('Error: ', res)
+        }
+      })
+    })
+  },
+  // 歌手描述
+  getArtistDesc (ctx, payload) {
+    return new Promise((resolve, reject) => {
+      api.getArtistDesc(payload).then(res => {
+        if (res.code === 200) {
+          resolve(res)
+        } else {
+          reject(res)
+          Message.error('Error: ', res)
+        }
+      })
+    })
+  },
+
+  // 相似歌手
+  getArtistSimi (ctx, payload) {
+    return new Promise((resolve, reject) => {
+      api.getArtistSimi(payload).then(res => {
         if (res.code === 200) {
           resolve(res)
         } else {

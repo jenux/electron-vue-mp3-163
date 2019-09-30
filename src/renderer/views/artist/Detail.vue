@@ -14,6 +14,11 @@
         </el-aside>
         <el-main v-if="data">
           <h1>{{ data.artist.name }}</h1>
+          <h4 v-if="data.artist.alias.length">
+            <span 
+              v-for="item in data.artist.alias" 
+              :key="item">{{item}}</span>
+          </h4>
           <div class="actions">
             <el-button round>
               <i class="el-icon-folder-add" /> 收藏
@@ -32,14 +37,25 @@
       </el-container>
 
       <div class="detail__main">
-        <el-tabs v-model="tabs.selected">
+        <el-tabs v-model="selectedTab">
           <el-tab-pane label="专辑" name="album">
-            <artist-album :hot-songs="data.hotSongs"></artist-album>
+            <artist-album 
+              :artist-id="$route.params.id"
+              :hot-songs="data.hotSongs"></artist-album>
           </el-tab-pane>
-          <el-tab-pane label="MV" name="mv">MV</el-tab-pane>
-          <el-tab-pane label="歌手详情" name="info">歌手详情</el-tab-pane>
-          <el-tab-pane label="相似歌手" name="similar">相似歌手</el-tab-pane>
-          <el-tab-pane label="演出" name="show">演出</el-tab-pane>
+          <el-tab-pane label="MV" name="mv">
+            <artist-mv 
+              :artist-id="$route.params.id"></artist-mv>
+          </el-tab-pane>
+          <el-tab-pane label="歌手详情" name="desc">
+            <artist-desc 
+              :artist-id="$route.params.id"></artist-desc>
+          </el-tab-pane>
+          <el-tab-pane label="相似歌手" name="similar">
+            <artist-simi 
+              :artist-id="$route.params.id"></artist-simi>
+          </el-tab-pane>
+          <!-- <el-tab-pane label="演出" name="show">演出</el-tab-pane> -->
         </el-tabs>
       </div>
     </div>
@@ -53,20 +69,24 @@
     mapActions 
   } = createNamespacedHelpers('Artist')
   import ArtistAlbum from './ArtistAlbum'
+  import ArtistMv from './ArtistMV'
+  import ArtistDesc from './ArtistDesc'
+  import ArtistSimi from './ArtistSimi'
 
   export default {
     name: 'artist-detail',
     data () {
       return {
         loading: false,
-        tabs: {
-          selected: 'album'
-        },
+        selectedTab: 'album',
         data: {}
       }
     },
     components: {
-      ArtistAlbum
+      ArtistAlbum,
+      ArtistMv,
+      ArtistDesc,
+      ArtistSimi
     },
     methods: {
       ...mapActions(['getArtist']),
@@ -86,6 +106,8 @@
 </script>
 
 <style lang="scss">
+  @import "@/styles/var";
+
   .artist__detail {
     .el-main {
       padding-top: 0
@@ -114,8 +136,13 @@
       }
       .meta {
         display: flex;
+        color: $font_secondary_color;
         & > div {
           margin-right: 10px
+        }
+        b {
+          font-weight: normal;
+          color: $font_color;
         }
       }
     }
